@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dam demo</title>
+        <meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="style.css">	
+        <script src="src/jquery-3.6.0.min.js"></script>
+<!--        console.log('Client running at http://localhost:63342/ws_projects/damPlate-main/index.html')-->
+    </head>
+    <body>
+
+        <canvas id="canvas" width="1200" height="500"> 	
+            <script src="src/matrix.js"></script>
+            <script src="src/dam.js"></script>
+        </canvas>
+
+        <FORM>
+            <div class="parent">
+                <div class="inner-left">
+                    <p><font size="4" color="green" face="Arial"><b>Сhange thermal conductivity coefficient</b></font></p>
+                    <p><font size="3" color="green" face="Arial">In the first block:</font>
+                        <input type="button" name="bt_b1" value="Show first block" onclick ="showBlock1()" >
+                        <input type="button" name="bt_b1" value="Hide" onclick ="reDrawBlock1()" >
+                    </p>
+                    <input size="45" id='coefB1' value="0.5"/>
+                    <p><font size="3" color="green" face="Arial">In the second block:</font>
+                        <input type="button" name="bt_b1" value="Show second block" onclick ="showBlock2()" >
+                        <input type="button" name="bt_b1" value="Hide" onclick ="reDrawBlock2()" >
+                    </p>
+                    <input size="45" id='coefB2' value="1.5"/>
+                </div>
+
+                <div class="i-r">
+                    <p>1 </p>
+                    <p><font size="5" face="Arial">2</font> </p>
+                    <p><font size="4" color="green" face="Arial"><b>W/mK</b></font></p>
+                    <p>3</p>
+                    <p><font size="4" color="green" face="Arial"><b>W/mK</b></font></p>
+                </div>
+
+                <div class="inner-right">
+                    <p><font size="4" color="green" face="Arial"><b>Change temperature</b></font></p>
+                    <p><font size="3" color="green" face="Arial">In the water:</font></p>
+                    <input size="45" id='tWater' value="5"/>
+                    <p><font size="3" color="green" face="Arial">In the air:</font></p>
+                    <input size="45" id='tAir' value="20"/>
+                </div>
+
+                <div class="i-r">
+                    <p>1 </p>
+                    <p>2 </p>
+                    <p><font size="4" color="green" face="Arial"><b>°C</b></font></p>
+                    <p>3</p>
+                    <p><font size="4" color="green" face="Arial"><b>°C</b></font></p>
+                </div>
+
+                <div class="inner-right">
+                    <p>
+                        <font size="4" color="green" face="Arial"><b>Status: </b></font>
+                        <font size="4" color="red" face="Arial" id="loadText">Loading...</font>
+                    </p>
+                    
+                    <input type="button" name="bt" value="ReDraw dam" onclick ="updateChanges()" >
+                </div>
+                <div class="inner-right2">
+                    <div class="loader" id="loadCircle"></div>
+                </div>
+            </div>
+        </FORM>
+<!--
+        <script src="src/main.js"></script> Срабатывает при обновлении страницы
+-->
+    </body>
+</html>

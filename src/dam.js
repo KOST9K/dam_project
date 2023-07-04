@@ -20,15 +20,15 @@ class Dam {
 
     read() { //Нарезка данных на 3 массива после получения ответа
 
-        let strBlocks = meshTxt.split('@'); //Массив с 3-мя массивами
+        /*let strBlocks = meshTxt.split('@'); //Массив с 3-мя массивами
 
          let newStr = [
              strBlocks[0].split(','), //координаты узлов
              strBlocks[1].split(','), //номера элементов и его узлов
              strBlocks[2].split(',')  //граничные условия
          ];
-          console.log(newStr)
-       // let newStr = remasterText(meshTxt);
+          console.log(newStr)*/
+        let newStr = remasterText(meshTxt);
 
         // console.log(newStr)
         let nums = new Array(3); //перегон значений во Float

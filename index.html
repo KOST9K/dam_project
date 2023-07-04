@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>dam demo</title>
-        <meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="style.css">	
-        <script src="src/jquery-3.6.0.min.js"></script>
+<head>
+    <title>dam demo</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="src/jquery-3.6.0.min.js"></script>
 
-    </head>
-    <body>
+</head>
+<body>
+<div>
+    <div>
+        <div style="display: flex; flex-direction: row">
+            <div style="text-align: center; padding: 15px; width: 1200px ">
+                <b class="nonstatic" hidden="hidden" id="nonText"> non-</b>
+                <b class="headerWord">Static</b>
+                <b class="header">equation of thermal conductivity</b>
+            </div>
+            <div>
+              <!--  <input id="staticEqButton" style="margin-top: 25px; font-size: 15px" type="button"
+                       value="Static equation" onclick="switchEqType2()">
+                <input id="nonStaticEqButton" style="margin-top: 25px; font-size: 15px" type="button"
+                       value="non-Static equation" onclick="switchEqType()">-->
+            </div>
+        </div>
 
-        <canvas id="canvas" width="1200" height="500"> 	
+        <canvas id="canvas" width="1200" height="500">
             <script src="src/matrix.js"></script>
             <script src="src/dam.js"></script>
         </canvas>
@@ -17,58 +32,92 @@
         <FORM>
             <div class="parent">
                 <div class="inner-left">
-                    <p><font size="4" color="green" face="Arial"><b>Сhange thermal conductivity coefficient</b></font></p>
-                    <p><font size="3" color="green" face="Arial">In the first block:</font>
-                        <input type="button" name="bt_b1" value="Show first block" onclick ="showBlock1()" >
-                        <input type="button" name="bt_b1" value="Hide" onclick ="reDrawBlock1()" >
+                    <p><b class="regularText">Сhange thermal conductivity coefficient</b></p>
+                    <p><b class="regularText">In the first block:</b>
+
+                        <!--Показ/скрытие 1 части-->
+                        <input type="button" name="bt_b1" value="Show first block" onclick="showBlock1()">
+                        <input type="button" name="bt_b1" value="Hide" onclick="reDrawBlock1()">
                     </p>
-                    <input size="45" id='coefB1' value="0.5"/>
-                    <p><font size="3" color="green" face="Arial">In the second block:</font>
-                        <input type="button" name="bt_b1" value="Show second block" onclick ="showBlock2()" >
-                        <input type="button" name="bt_b1" value="Hide" onclick ="reDrawBlock2()" >
+                    <div>
+                        <input size="45" id='coefB1' value="0.5"/> <!--Первый коэффицент-->
+                        <b class="regularText">W/mK</b>
+                    </div>
+                    <!--Показ/скрытие 2 части-->
+                    <p><b class="regularText">In the second block:</b>
+                        <input type="button" name="bt_b1" value="Show second block" onclick="showBlock2()">
+                        <input type="button" name="bt_b1" value="Hide" onclick="reDrawBlock2()">
                     </p>
-                    <input size="45" id='coefB2' value="1.5"/>
+                    <div>
+                        <input size="45" id='coefB2' value="1.5"/> <!--Второй коэффициент-->
+                        <b class="regularText">W/mK</b>
+                    </div>
                 </div>
 
-                <div class="i-r">
-                    <p>1 </p>
-                    <p><font size="5" face="Arial">2</font> </p>
-                    <p><font size="4" color="green" face="Arial"><b>W/mK</b></font></p>
-                    <p>3</p>
-                    <p><font size="4" color="green" face="Arial"><b>W/mK</b></font></p>
-                </div>
 
                 <div class="inner-right">
-                    <p><font size="4" color="green" face="Arial"><b>Change temperature</b></font></p>
-                    <p><font size="3" color="green" face="Arial">In the water:</font></p>
-                    <input size="45" id='tWater' value="5"/>
-                    <p><font size="3" color="green" face="Arial">In the air:</font></p>
-                    <input size="45" id='tAir' value="20"/>
+                    <p><b class="regularText">Change temperature</b></p>
+                    <p class="regularText">In the water:</p>
+                    <div>
+                        <input size="45" id='tWater' value="5"/> <!--Температура воды-->
+                        <b class="regularText">°C</b>
+                    </div>
+                    <p class="regularText">In the air:</p>
+                    <div>
+                        <input size="45" id='tAir' value="20"/> <!--Температура воздуха-->
+                        <b class="regularText">°C</b>
+                    </div>
                 </div>
 
-                <div class="i-r">
-                    <p>1 </p>
-                    <p>2 </p>
-                    <p><font size="4" color="green" face="Arial"><b>°C</b></font></p>
-                    <p>3</p>
-                    <p><font size="4" color="green" face="Arial"><b>°C</b></font></p>
+
+                <div class="inner-right"> <!--Правый блок со статусом и кнопкой для перерасчёта-->
+                    <div style="margin-top: 16px; margin-bottom: 16px; display: flex; flex-direction: column">
+                        <b class="regularText" style="margin-right: 8px">Load data</b>
+                        <div style="display: flex; flex-direction: row">
+                        <input type="button" id="loadFileXml" value="Choose file" style="width: 82px; margin-top: 10px" onclick="document.getElementById('mashInput').click();" />
+                            <b class = "regularText" hidden="hidden" id="DtLoaded" style="margin-left: 10px; margin-top: 10px">Data loaded</b>
+
+                            <input id="mashInput" type="file" size="50"  style="margin-top: 6px; display:none" onchange="processFiles(this.files)">
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: row">
+                        <p>
+                            <b class="regularText">Status: </b>
+                            <b id="loadText" class="regularText" style="color: red">Press start</b>
+                        </p>
+                        <div style="margin-left: 8px; margin-top: 12px" class="loader" id="loadCircle"></div>
+                    </div>
+                    <input id="start" type="button" name="bt" value="Start" onclick="startMain()">
+                    <input id="redraw" hidden type="button" name="bt2" value="Recalculate" onclick="updateChanges()">
+                    <div style="margin-top: 20px">
+
+
+                    </div>
+                    <div id="dayInputDiv" hidden="hidden"> <!--Блок ввода продолжительности-->
+                        <p>
+                            <b class="regularText">Duration in days</b>
+                        </p>
+                        <input id="day_input" value="1" oninput="days.innerText=this.value">
+                        <b id="days">0</b>
+                    </div>
                 </div>
 
-                <div class="inner-right">
-                    <p>
-                        <font size="4" color="green" face="Arial"><b>Status: </b></font>
-                        <font size="4" color="red" face="Arial" id="loadText">Loading...</font>
-                    </p>
-                    
-                    <input type="button" name="bt" value="ReDraw dam" onclick ="updateChanges()" >
-                </div>
-                <div class="inner-right2">
-                    <div class="loader" id="loadCircle"></div>
-                </div>
+
             </div>
         </FORM>
 
-        <script src="src/main.js"></script> Срабатывает при обновлении страницы
 
-    </body>
+        <div class="regularText" id="fileOutput" hidden="hidden"></div>
+    </div>
+    <p>5</p>
+
+    <!--Через аппенд сделать слайдер в js файле после того как всё посчиталось-->
+    <div class="range" hidden="hidden">
+        <input type="range" value="1" min="1" max=days oninput="rangeValue.innerText = this.value">
+        <p id="rangeValue">25</p>
+    </div>
+
+    <script src="src/main.js"></script>
+</div>
+</body>
 </html>

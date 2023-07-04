@@ -5,7 +5,7 @@ body {
 }
 
 #canvas {
-    background-color: white;
+    background-color: #f0b878;
 	border: 1px solid white;
 	/*display: block;
     margin: 0 auto;*/
@@ -25,6 +25,7 @@ body {
     flex-grow: 1;*/
     /*outline: px solid black;*/
     margin-left: 50px;
+
 }
 
 .inner-right2 {
@@ -63,3 +64,30 @@ body {
     }
 }
 
+.header {
+    font-family: 'Arial', sans-serif ;
+    font-size: 32px ;
+    color: green ;
+
+}
+
+.headerWord{
+    font-family: 'Arial', sans-serif ;
+    font-size: 32px ;
+    color: red ;
+    margin-right: 10px;
+}
+
+.nonstatic{
+    font-family: 'Arial', sans-serif ;
+    font-size: 32px ;
+    color: yellow ;
+}
+
+.regularText{
+    font-size: 18px;
+    color: green;
+    font-family: 'Arial', sans-serif ;
+
+
+}

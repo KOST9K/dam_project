@@ -92,7 +92,7 @@ function processFiles(files) { //Функция загрузки текста и
         output.textContent = e.target.result;
         meshTxt = e.target.result;
 
-        if (meshTxt !== ""){
+        if (meshTxt !== "") {
             document.getElementById("DtLoaded").removeAttribute("hidden")
         }
         /*  let strBlocks = meshTxt.split('@'); //Массив с 3-мя массивами
@@ -329,4 +329,18 @@ function switchEqType() {
 function switchEqType2() {
     document.getElementById("nonText").setAttribute("hidden", true)
     document.getElementById("dayInputDiv").setAttribute("hidden", true)
+}
+
+
+function showHint() {
+    document.getElementById("btnHint").setAttribute("hidden", true)
+    document.getElementById("btnHintHide").removeAttribute("hidden")
+    document.getElementById("hintDiv").style.visibility = "visible"
+
+}
+
+function hideHint() {
+    document.getElementById("btnHint").removeAttribute("hidden")
+    document.getElementById("btnHintHide").setAttribute("hidden", true)
+    document.getElementById("hintDiv").style.visibility = "hidden"
 }

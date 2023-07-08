@@ -16,11 +16,103 @@
                 <b class="headerWord">Steady-state</b>
                 <b class="header">heat transfer</b>
             </div>
-            <div>
-              <!--  <input id="staticEqButton" style="margin-top: 25px; font-size: 15px" type="button"
-                       value="Static equation" onclick="switchEqType2()">
-                <input id="nonStaticEqButton" style="margin-top: 25px; font-size: 15px" type="button"
-                       value="non-Static equation" onclick="switchEqType()">-->
+            <div id="hintDiv" style="visibility: hidden; position: absolute; left: 1210px; display: flex; flex-direction: column; border-color: orange; border-width: 2px">
+                <b class="regularText" style="font-size: 30px; margin-top: 15px; margin-left: 15px">File format hint</b>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px">1. Nodes coordinates must come
+                        after</b>
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: red">"*Node"</b>
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px">and end up with a</b>
+                </div>
+                <b class="regularText" style=" margin-left: 15px; color: red">"*Element, type=DC2D3"</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: orange">Example:</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; width:350px">
+                    *Node<br/>
+                    1, 5.05000019, 31.1499996<br/>
+                    2, 5.05000019, 33.6499977<br/>
+                    3, 7.05000019, 33.6499977<br/>
+                    4, 7.05000019, 31.1499996<br/>
+                    ............................................<br/>
+                    *Element, type=DC2D3<br/>
+                </b>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px">2. Nodes elements must come
+                        after</b>
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: red">"*Element,
+                        type=DC2D3"</b>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-left: 15px">and end up with a</b>
+                    <b class="regularText" style=" margin-left: 15px; color: red">"*Nset, nset=Concrete-1"</b>
+                </div>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: orange">Example:</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; width:350px">
+                    *Element, type=DC2D3<br/>
+                    1, 144, 123,  47<br/>
+                    2, 130,  97,  46<br/>
+                    3, 114,  64,  24<br/>
+                    4, 146, 114,  86<br/>
+                    ............................................<br/>
+                    *Nset, nset=Concrete-1<br/>
+                </b>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px">3. 1st material nodes must come after</b>
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: red">"*Elset, elset=Concrete-1, generate"</b>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-left: 15px">and end up with </b>
+                    <b class="regularText" style=" margin-left: 15px; color: red">anything</b>
+                </div>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: orange">Example:</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; width:350px">
+                    *Elset, elset=Concrete-1, generate<br/>
+                    1,  300,    1<br/>
+                </b>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px">4. 2nd material nodes must come after</b>
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: red">"*Elset, elset=Concrete-2, generate"</b>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-left: 15px">and end up with </b>
+                    <b class="regularText" style=" margin-left: 15px; color: red">anything</b>
+                </div>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: orange">Example:</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; width:350px">
+                    *Elset, elset=Concrete-2, generate<br/>
+                    301,  335,    1<br/>
+                </b>
+                <div style="display: flex; flex-direction: row;">
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px">5. Water temperature must come after</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: red">"*Nset, nset=T_water"</b>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-left: 15px">and end up with a</b>
+                    <b class="regularText" style=" margin-left: 15px; color: red">"*Nset, nset=T_air"</b>
+                </div>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: orange">Example:</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; width:350px">
+                    *Nset, nset=T_water<br/>
+                    13, 14, 46, 47, 48, 49, 50, 51, 52, 53<br/>
+                    *Nset, nset=T_air<br/>
+                </b>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px">6. Air temperature must come after</b>
+                    <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: red">"*Nset, nset=T_air"</b>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <b class="regularText" style=" margin-left: 15px">and end up with any</b>
+                    <b class="regularText" style=" margin-left: 15px; color: red">word</b>
+                </div>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; color: orange">Example:</b>
+                <b class="regularText" style=" margin-top: 15px; margin-left: 15px; width:450px">
+                    *Nset, nset=T_air<br/>
+                    10, 11, 12, 27, 42, 43, 44, 45, 72, 73, 74, 75, 76, 77, 78<br/>
+                    *Nset, nset=T_gallery<br/>
+                </b>
+                <!--  <input id="staticEqButton" style="margin-top: 25px; font-size: 15px" type="button"
+                         value="Static equation" onclick="switchEqType2()">
+                  <input id="nonStaticEqButton" style="margin-top: 25px; font-size: 15px" type="button"
+                         value="non-Static equation" onclick="switchEqType()">-->
             </div>
         </div>
 
@@ -74,10 +166,18 @@
                     <div style="margin-top: 16px; margin-bottom: 16px; display: flex; flex-direction: column">
                         <b class="regularText" style="margin-right: 8px">Load data</b>
                         <div style="display: flex; flex-direction: row">
-                        <input type="button" id="loadFileXml" value="Choose file" style="width: 82px; margin-top: 10px" onclick="document.getElementById('mashInput').click();" />
-                            <b class = "regularText" hidden="hidden" id="DtLoaded" style="margin-left: 10px; margin-top: 10px">Data loaded</b>
+                            <input type="button" id="loadFileXml" value="Choose file"
+                                   style="width: 82px; margin-top: 10px"
+                                   onclick="document.getElementById('mashInput').click();"/>
+                            <input type="button" id="btnHint" value="Hint"
+                                   style="height: 21px; margin-top: 10px; margin-left: 10px" onclick="showHint()">
+                            <input type="button" id="btnHintHide" value="Hint" hidden="hidden"
+                                   style="height: 21px; margin-top: 10px; margin-left: 10px;" onclick="hideHint()">
+                            <b class="regularText" hidden="hidden" id="DtLoaded"
+                               style="margin-left: 10px; margin-top: 10px">Data loaded</b>
 
-                            <input id="mashInput" type="file" size="50"  style="margin-top: 6px; display:none" onchange="processFiles(this.files)">
+                            <input id="mashInput" type="file" size="50" style="margin-top: 6px; display:none"
+                                   onchange="processFiles(this.files)">
                         </div>
                     </div>
                     <div style="display: flex; flex-direction: row">
